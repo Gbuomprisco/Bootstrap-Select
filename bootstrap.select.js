@@ -61,6 +61,7 @@ $.fn.bootstrapSelect = function(options, callback) {
 	var Dropdown = function(_id) {
 
 		var element = $('<ul class="dropdown-menu" role="menu" data-button="' + _id + '">');
+		element.css("top", "88.5%");
 		var options = '';
 
 		$element.find('option').each(function() {
@@ -97,6 +98,14 @@ $.fn.bootstrapSelect = function(options, callback) {
 			/*	Preventing link action	*/
 			event.preventDefault();
 		}).css('cursor', 'pointer');
+
+		button_element.on('focus', function(event) {
+			$element.trigger('focusin');
+			event.stopPropagation();
+		}).on('blur', function(event) {
+			$element.trigger('blur');
+			event.stopPropagation();
+		});
 
 	};
 
