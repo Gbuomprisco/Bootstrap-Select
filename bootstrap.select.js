@@ -91,7 +91,7 @@ $.fn.bootstrapSelect = function(options, callback) {
 			var _label = $(this).text();
 
 			/*	Assigning values to button (label) and real select (value)	*/
-			$element.val(_val);
+			$element.val(_val.toString()).trigger('change');
 			button_element.html(_label + caret);
 
 			/*	Preventing link action	*/
