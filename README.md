@@ -3,7 +3,7 @@ Bootstrap-Select
 
 JQuery plugin to create Bootstrap-like select elements
 
-[LIVE DEMO](http://jsfiddle.net/WgCN9/)
+#### [LIVE DEMO](http://jsfiddle.net/WgCN9/)
 
 # Requirements
 - Bootstrap (CSS and JS)
