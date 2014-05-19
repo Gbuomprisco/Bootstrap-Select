@@ -10,6 +10,14 @@ $.fn.bootstrapSelect = function(options, callback) {
 		@parent {Object}
 		** The default values for parent is selector: false, placement: ''.
 		** If not overwritten, the new elements will be created just after the select element
+		
+		@input_group {@Boolean}
+		** The default value is false
+		**	If true, a class to support input group gets added accordingly to Bootstrap's CSS
+
+		@class {@String}
+		** The default value is default
+		** It is possible to define other classes supported by Bootstrap
 
 		** @parent.selector is the selector where to put the new elements generated
 		** @parent.placement is where to put the new elements inside the parent selector. It could be:
@@ -20,6 +28,8 @@ $.fn.bootstrapSelect = function(options, callback) {
 
 	var default_options = {
 		button_label: false,
+		input_group: false,
+		class: 'default',
 		parent: {
 			selector: $element.parent(),
 			placement: 'append'
@@ -43,10 +53,10 @@ $.fn.bootstrapSelect = function(options, callback) {
 		});
 	};
 
-	var Button = function(_id, classes) {
+	var Button = function(_id) {
 
-		var element = $('<button type="button" data-toggle="dropdown" id="' + _id + '">');
-		element.addClass(classes);
+		var element = $('<button class="btn" type="button" role="button" data-toggle="dropdown" id="' + _id + '">');
+		element.addClass("btn-" + default_options.class);
 
 		var set_label = function(label) {
 			element.html(label + caret);
@@ -60,15 +70,28 @@ $.fn.bootstrapSelect = function(options, callback) {
 
 	var Dropdown = function(_id) {
 
-		var element = $('<ul class="dropdown-menu" role="menu" data-button="' + _id + '">');
-		element.css("top", "88.5%");
-		var options = '';
+		var element = $('<ul class="dropdown-menu" aria-labelledby=' + _id + ' role="menu">');
+
+		if (default_options.input_group) {
+			element.css("top", "88.5%");
+		}
+
+		var options = '',
+			option, option_inner_a;
 
 		$element.find('option').each(function() {
-			options += '<li><a data-value="' + $(this).val() + '">' + $(this).text() + '</a></li>';
+			option = $('<li>');
+			option_inner_a = $('<a>');
+			option_inner_a.data('value', $(this).val()).html($(this).text()).css('cursor', 'pointer');
+
+			if ($(this).attr('disabled') == 'true' || $(this).attr('disabled') == 'disabled') {
+				option_inner_a.attr('disabled', 'disabled');
+			}
+
+			option.append(option_inner_a);
+			element.append(option);
 		});
 
-		element.html(options);
 		return element;
 	};
 
@@ -79,7 +102,7 @@ $.fn.bootstrapSelect = function(options, callback) {
 
 		/*	Selecting button and dropdown elements	*/
 		var button_element = $('#' + _id);
-		var select = $('[data-button="' + _id + '"]');
+		var select = $('[aria-labelledby="' + _id + '"]');
 
 		/*
 		 ** Actvating event on click on dropdown elements to change
@@ -111,10 +134,15 @@ $.fn.bootstrapSelect = function(options, callback) {
 
 	var createElements = function(callback) {
 
-		var element = $('<div class="input-group-btn">');
+		var element = $('<div class="dropdown">');
+
+		if (default_options.input_group) {
+			element.addClass('input-group-btn');
+		}
+
 		var _label;
 
-		var button = new Button(_id, "btn btn-default dropdown-toggle");
+		var button = new Button(_id);
 		var dropdown = new Dropdown(_id);
 
 		if (default_options.button_label) {
@@ -143,4 +171,5 @@ $.fn.bootstrapSelect = function(options, callback) {
 	};
 
 	init();
+	return $element;
 };
