@@ -3,6 +3,8 @@ Bootstrap-Select
 
 JQuery plugin to create Bootstrap-like select elements
 
+[LIVE DEMO](http://jsfiddle.net/WgCN9/)
+
 # Requirements
 - Bootstrap (CSS and JS)
 - JQuery Core
@@ -11,11 +13,12 @@ JQuery plugin to create Bootstrap-like select elements
 
 #### Plugin Options
 	
-	- button_label {String}
+	- @label {String}
 		- default value: false {Boolean}
 			- if false, the button label will be the first option text in the select element
 		- possible values: any other string
-	- parent {Object}
+		
+	- @parent {Object}
 		- selector:
 			- default value: the parent of the select element initialized with the plugin
 			- possible values: any other element in the page
@@ -25,6 +28,14 @@ JQuery plugin to create Bootstrap-like select elements
 				- "append"
 				- "prepend"
 				- "inner"
+	- @class {@String}
+		- default value: "default"
+		- It is possible to define other classes supported by Bootstrap
+
+	- @input_group {Boolean}
+		- default value: false
+		- If true, a class to support input group gets added accordingly to Bootstrap's CSS
+
 
 	var options = {
 		button_label: "My Dropdwon Button", // or whatever
