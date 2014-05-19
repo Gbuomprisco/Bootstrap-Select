@@ -38,11 +38,12 @@ JQuery plugin to create Bootstrap-like select elements
 
 
 	var options = {
-		button_label: "My Dropdwon Button", // or whatever
+		label: "My Dropdwon Button", // or whatever
 		parent: {
 			selector: $('#myCustomElement') // or "#myCustomElement",
 			placement: 'prepend' // or append or inner
-		}
+		},
+		class: 'primary' // or danger, warning, success, etc
 	}
 	
 	$mySelect.bootstrapSelect(options, callback);
