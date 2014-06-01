@@ -9,6 +9,13 @@ JQuery plugin to create Bootstrap-like select elements
 - Bootstrap (CSS and JS)
 - JQuery Core
 
+# Installation
+Install requirements with bower (or manually)
+
+	bower install
+
+The requirements JQuery and Bootstrap will be available in the generated folder "bower_components".
+
 # Usage
 
 #### Plugin Options

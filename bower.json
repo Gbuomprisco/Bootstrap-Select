@@ -1,0 +1,14 @@
+{
+  "name": "Bootstrap Select",
+  "description": "JQuery plugin to create Bootstrap-like select elements",
+  "dependencies": {
+    "jquery": "latest",
+    "bootstrap": "latest"
+  },
+  "install" : {
+        "path"  : {
+            "js": "js/",
+            "css": "css/"
+        }
+    }
+}
